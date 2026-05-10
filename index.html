@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>نِعمة | منصة تقليل هدر الطعام</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-theme="dark">
+    <div class="app-loader" id="appLoader" aria-hidden="true">
+      <div class="loader-card">
+        <img src="assets/logo.svg" alt="" />
+        <strong>نِعمة</strong>
+      </div>
+    </div>
+  <button class="menu-toggle" id="menuToggle" type="button" aria-label="فتح القائمة" aria-expanded="false">☰</button>
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#" data-page="home" aria-label="نِعمة">
+      <img class="brand-logo" src="assets/logo.svg" alt="شعار نِعمة" />
+      <span>
+        <strong>نِعمة</strong>
+        <small>منصة تقليل هدر الطعام</small>
+      </span>
+    </a>
+
+    <nav class="main-nav" aria-label="التنقل الرئيسي">
+      <button class="nav-link active" type="button" data-page="home"><img src="assets/home.svg" alt="" />الرئيسية</button>
+      <button class="nav-link" type="button" data-page="add"><img src="assets/add.svg" alt="" />إضافة فائض</button>
+      <button class="nav-link" type="button" data-page="list"><img src="assets/box.svg" alt="" />الفوائض المتاحة</button>
+      <button class="nav-link" type="button" data-page="requests"><img src="assets/clipboard.svg" alt="" />طلباتي</button>
+      <button class="nav-link" type="button" data-page="volunteer"><img src="assets/users.svg" alt="" />المتطوعين</button>
+      <button class="nav-link" type="button" data-page="impact"><img src="assets/chart.svg" alt="" />الأثر</button>
+    </nav>
+  </header>
+
+  <aside class="side-drawer" aria-label="قائمة الدعم والإعدادات">
+    <div class="drawer-title">
+      <div class="drawer-brand">
+        <img class="drawer-logo" src="assets/logo.svg" alt="شعار نِعمة" />
+        <h2>نِعمة</h2>
+      </div>
+      <button class="close-drawer" id="closeDrawer" type="button" aria-label="إغلاق القائمة">×</button>
+    </div>
+
+    <button class="drawer-link" type="button" data-page="settings">
+      <span>الإعدادات</span>
+      <span class="drawer-icon"><img src="assets/settings.svg" alt="" /></span>
+    </button>
+
+    <button class="drawer-link" type="button" data-page="support">
+      <span>الدعم</span>
+      <span class="drawer-icon"><img src="assets/support.svg" alt="" /></span>
+    </button>
+
+    <button class="drawer-link logout-btn" id="logoutButton" type="button">
+      <span>تسجيل الخروج</span>
+      <span class="drawer-icon">↩</span>
+    </button>
+  </aside>
+
+  <button class="page-nav-toggle" id="pageNavToggle" type="button" aria-label="فتح صفحات الموقع" aria-expanded="false">
+    <span>الصفحات</span>
+  </button>
+  <div class="page-nav-backdrop" id="pageNavBackdrop"></div>
+
+  <aside class="page-side-nav" aria-label="صفحات الموقع">
+    <div class="page-side-title">
+      <strong>صفحات نِعمة</strong>
+      <button class="close-page-nav" id="closePageNav" type="button" aria-label="إغلاق صفحات الموقع">×</button>
+    </div>
+    <button class="page-drawer-link" type="button" data-page="home"><img src="assets/home.svg" alt="" />الرئيسية</button>
+    <button class="page-drawer-link" type="button" data-page="add"><img src="assets/add.svg" alt="" />إضافة فائض</button>
+    <button class="page-drawer-link" type="button" data-page="list"><img src="assets/box.svg" alt="" />الفوائض المتاحة</button>
+    <button class="page-drawer-link" type="button" data-page="requests"><img src="assets/clipboard.svg" alt="" />طلباتي</button>
+    <button class="page-drawer-link" type="button" data-page="volunteer"><img src="assets/users.svg" alt="" />المتطوعين</button>
+    <button class="page-drawer-link" type="button" data-page="impact"><img src="assets/chart.svg" alt="" />الأثر</button>
+  </aside>
+
+<main class="page-content">
+    <section class="page" id="register">
+      <div class="login-layout">
+        <form class="form-card login-card" id="registerForm">
+          <p class="eyebrow">Create Account</p>
+          <h1>إنشاء مستخدم</h1>
+          <label>الاسم
+            <input id="registerName" required placeholder="اسم المستخدم" />
+          </label>
+          <label>البريد الإلكتروني
+            <input id="registerEmail" type="email" required placeholder="name@example.com" />
+            <button class="email-suggestion" id="registerEmailSuggestion" type="button"></button>
+          </label>
+          <label>كلمة المرور
+            <input id="registerPassword" type="password" required placeholder="••••••••" />
+          </label>
+          <button class="primary" type="submit">حفظ المستخدم</button>
+          <button class="link-action" type="button" data-page="login">عندي حساب</button>
+        </form>
+        <aside class="login-side">
+          <span class="sparkle"></span>
+          <h2 class="animated-name" lang="ar">نِعمة</h2>
+          <p>أنشئ حسابك أولًا، ثم استخدم بياناتك المحفوظة للدخول إلى الموقع.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="page active" id="login">
+      <div class="login-layout">
+        <form class="form-card login-card" id="loginForm">
+          <p class="eyebrow">Welcome Back</p>
+          <h1>تسجيل الدخول</h1>
+          <label>البريد الإلكتروني
+            <input id="loginEmail" type="email" required placeholder="name@example.com" />
+            <button class="email-suggestion" id="loginEmailSuggestion" type="button"></button>
+          </label>
+          <label>كلمة المرور
+            <input id="loginPassword" type="password" required placeholder="••••••••" />
+          </label>
+          <label class="check-row">
+            <input id="rememberLogin" type="checkbox" checked />
+            <span>حفظ معلومات تسجيل الدخول</span>
+          </label>
+          <button class="primary" type="submit">دخول</button>
+          <button class="link-action" type="button" data-page="register">إنشاء حساب جديد</button>
+        </form>
+        <aside class="login-side">
+          <span class="sparkle"></span>
+          <h2 class="animated-name" lang="ar">نِعمة</h2>
+          <p>شارك الفائض بسهولة، وساعد الطعام الجيد يصل لمن يحتاجه في الوقت المناسب.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="page" id="home">
+      <div class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Food Rescue</p>
+          <h1>اربط فائض الطعام بمن يحتاجه قبل أن يُهدر.</h1>
+          <p>فائض الطعام من المطاعم والأسر والمخابز يصل بسرعة للجهات والمتطوعين.</p>
+          <div class="hero-actions">
+            <button class="primary" data-page="add">أضف فائض طعام</button>
+            <button class="secondary" data-page="list">تصفح المتاح</button>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="plate">
+            <span class="leaf one"></span>
+            <span class="leaf two"></span>
+            <span class="leaf three"></span>
+          </div>
+          <div class="pickup-card">
+            <strong>استلام خلال 45 دقيقة</strong>
+            <span>3 وجبات جاهزة للتوزيع</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="problem-grid">
+        <article>
+          <span class="number">01</span>
+          <h2>هدر أقل</h2>
+          <p>تنظيم الفائض قبل انتهاء وقت الاستلام.</p>
+        </article>
+        <article>
+          <span class="number">02</span>
+          <h2>وصول أسرع</h2>
+          <p>قائمة واضحة للفوائض القريبة والجاهزة.</p>
+        </article>
+        <article>
+          <span class="number">03</span>
+          <h2>أثر أجمل</h2>
+          <p>وجبات محفوظة ومجتمع أكثر تعاونًا.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="page" id="add">
+      <div class="section-heading">
+        <p class="eyebrow">Add Food Surplus</p>
+        <h1>إضافة فائض طعام</h1>
+      </div>
+
+      <form class="form-card" id="foodForm">
+        <div class="form-grid">
+          <label>اسم الجهة أو الشخص
+            <input id="provider" required placeholder="مثال: مطعم الخير" />
+          </label>
+
+          <label>نوع الطعام
+            <select id="foodType" required>
+              <option value="وجبات جاهزة">وجبات جاهزة</option>
+              <option value="مخبوزات">مخبوزات</option>
+              <option value="فواكه وخضار">فواكه وخضار</option>
+              <option value="معلبات">معلبات</option>
+            </select>
+          </label>
+
+          <label>عدد الحصص
+            <input id="servings" type="number" min="1" value="10" required />
+          </label>
+
+          <label>الحي
+            <input id="district" required placeholder="مثال: النرجس" />
+          </label>
+
+          <div class="location-section full-row required-location">
+            <div class="location-title">
+              <span>1</span>
+              <div>
+                <h2>حدد موقعك أنت</h2>
+                <p>من وين نجي نستلم فائض الطعام؟ هذا الموقع إجباري.</p>
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <label>موقع الاستلام
+                <input id="locationText" required placeholder="مثال: بوابة المطعم الخلفية، شارع الأمير تركي" />
+              </label>
+              <label>اسم مكان الاستلام
+                <input id="pickupPlace" required placeholder="مثال: مطعم الخير - فرع النرجس" />
+              </label>
+            </div>
+
+            <div class="location-actions">
+              <button class="secondary" id="useCurrentLocation" type="button">استخدم موقعي الحالي</button>
+              <button class="secondary" id="openMap" type="button">حدد موقع الاستلام بالخريطة</button>
+            </div>
+
+            <input id="locationLat" type="hidden" />
+            <input id="locationLng" type="hidden" />
+
+            <div class="map-panel" id="mapPanel" aria-label="اختيار موقع الاستلام من الخريطة">
+              <div class="map-toolbar">
+                <input id="mapSearch" placeholder="ابحث عن موقعك أو الحي" />
+                <button class="secondary" id="mapSearchButton" type="button">بحث</button>
+                <button class="secondary" id="mapResize" type="button">تكبير</button>
+                <button class="secondary" id="confirmMapLocation" type="button">تأكيد موقع الاستلام</button>
+              </div>
+              <div class="map-chips" aria-label="اقتراحات البحث في خريطة الاستلام">
+                <button type="button" data-map-chip="مطاعم قريبة">مطاعم</button>
+                <button type="button" data-map-chip="مخابز قريبة">مخابز</button>
+                <button type="button" data-map-chip="أسواق قريبة">أسواق</button>
+                <button type="button" data-map-chip="مواقف سيارات قريبة">مواقف</button>
+              </div>
+              <div class="map-frame-wrap">
+                <iframe
+                  id="mapFrame"
+                  title="خريطة اختيار موقع الاستلام"
+                  src="https://www.google.com/maps?q=Riyadh&output=embed"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+                <button class="map-pin" id="mapPin" type="button" aria-label="دبوس موقع الاستلام"></button>
+                <div class="map-hint">اسحب الدبوس أو ابحث عن الموقع ثم اضغط تأكيد</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="delivery-choice full-row" id="deliveryChoice">
+            <div class="location-title">
+              <span>2</span>
+              <div>
+                <h2>وين نودي الطعام؟</h2>
+                <p>اختاري هل نعمة تتولى التوزيع أو عندك مكان معين تبغين نوصل له.</p>
+              </div>
+            </div>
+
+            <div class="choice-cards">
+              <label class="choice-card">
+                <input type="radio" name="deliveryMode" value="center" checked />
+                <strong>خلي نعمة توزعه</strong>
+                <span>نستلم منك الطعام ونوزعه على الفئة الأنسب.</span>
+              </label>
+
+              <label class="choice-card">
+                <input type="radio" name="deliveryMode" value="direct" />
+                <strong>عندي مكان محدد</strong>
+                <span>أحدد موقع التسليم والجهة اللي أبغى يوصل لها الطعام.</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="direct-location-fields full-row hidden" id="directLocationFields">
+            <div class="location-section delivery-section">
+              <div class="location-title">
+                <span>3</span>
+                <div>
+                  <h2>حدد موقع التسليم</h2>
+                  <p>وين تبغى الطعام يروح؟ هذا يظهر فقط إذا عندك مكان محدد.</p>
+                </div>
+              </div>
+
+              <div class="form-grid">
+                <label>موقع التسليم
+                  <input id="deliveryLocationText" placeholder="مثال: جمعية خيرية في حي النرجس" />
+                </label>
+                <label>اسم مكان التسليم
+                  <input id="deliveryPlace" placeholder="مثال: جمعية البر - فرع النرجس" />
+                </label>
+              </div>
+
+              <div class="location-actions">
+                <button class="secondary" id="openDeliveryMap" type="button">حدد موقع التسليم بالخريطة</button>
+              </div>
+
+              <input id="deliveryLat" type="hidden" />
+              <input id="deliveryLng" type="hidden" />
+
+              <div class="map-panel" id="deliveryMapPanel" aria-label="اختيار موقع التسليم من الخريطة">
+                <div class="map-toolbar">
+                  <input id="deliveryMapSearch" placeholder="ابحث عن موقع التسليم أو الجهة المحتاجة" />
+                  <button class="secondary" id="deliveryMapSearchButton" type="button">بحث</button>
+                  <button class="secondary" id="deliveryMapResize" type="button">تكبير</button>
+                  <button class="secondary" id="confirmDeliveryMapLocation" type="button">تأكيد موقع التسليم</button>
+                </div>
+                <div class="map-chips" aria-label="اقتراحات البحث في خريطة التسليم">
+                  <button type="button" data-delivery-map-chip="جمعيات خيرية قريبة">جمعيات</button>
+                  <button type="button" data-delivery-map-chip="مساجد قريبة">مساجد</button>
+                  <button type="button" data-delivery-map-chip="سكن عمال قريب">سكن عمال</button>
+                  <button type="button" data-delivery-map-chip="سكن طلاب قريب">سكن طلاب</button>
+                </div>
+                <div class="map-frame-wrap">
+                  <iframe
+                    id="deliveryMapFrame"
+                    title="خريطة اختيار موقع التسليم"
+                    src="https://www.google.com/maps?q=Riyadh&output=embed"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                  </iframe>
+                  <button class="map-pin delivery-pin" id="deliveryMapPin" type="button" aria-label="دبوس موقع التسليم"></button>
+                  <div class="map-hint">اسحب الدبوس أو ابحث عن موقع التسليم ثم اضغط تأكيد</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <label>آخر وقت للاستلام
+            <select id="pickupTime" required>
+              <option value="18:00">6:00 PM</option>
+              <option value="18:30">6:30 PM</option>
+              <option value="19:00">7:00 PM</option>
+              <option value="19:30">7:30 PM</option>
+              <option value="20:00">8:00 PM</option>
+              <option value="20:30">8:30 PM</option>
+              <option value="21:00">9:00 PM</option>
+              <option value="21:30">9:30 PM</option>
+              <option value="22:00">10:00 PM</option>
+              <option value="22:30">10:30 PM</option>
+            </select>
+          </label>
+
+          <label>حالة الطعام
+            <select id="condition" required>
+              <option value="طازج">طازج</option>
+              <option value="مغلف">مغلف</option>
+              <option value="يحتاج تبريد">يحتاج تبريد</option>
+            </select>
+          </label>
+
+          <label class="full-row">الفئة المستفيدة
+            <select id="beneficiary" required>
+              <option value="عمال">عمال</option>
+              <option value="أسر محتاجة">أسر محتاجة</option>
+              <option value="جمعية خيرية">جمعية خيرية</option>
+              <option value="سكن طلاب">سكن طلاب</option>
+              <option value="مسجد أو مبادرة حي">مسجد أو مبادرة حي</option>
+              <option value="محتاجون بالقرب من الموقع">محتاجون بالقرب من الموقع</option>
+            </select>
+          </label>
+        </div>
+
+        <label>ملاحظات
+          <textarea id="notes" placeholder="مثال: الطعام مغلف وجاهز للاستلام من الاستقبال"></textarea>
+        </label>
+
+        <label>تعليمات الاستلام
+          <textarea id="pickupInstructions" placeholder="مثال: ادخل من الباب الجانبي واتصل بالمسؤول عند الوصول"></textarea>
+        </label>
+
+        <button class="primary" type="submit">نشر الفائض</button>
+      </form>
+    </section>
+
+    <section class="page" id="list">
+      <div class="section-heading row-heading">
+        <div>
+          <p class="eyebrow">Available Surplus</p>
+          <h1>الفوائض المتاحة</h1>
+        </div>
+        <div class="filters">
+          <button class="filter active" data-filter="all">الكل</button>
+          <button class="filter" data-filter="وجبات جاهزة">وجبات</button>
+          <button class="filter" data-filter="مخبوزات">مخبوزات</button>
+          <button class="filter" data-filter="فواكه وخضار">خضار وفواكه</button>
+        </div>
+      </div>
+      <div class="cards-grid" id="foodList"></div>
+    </section>
+
+    <section class="page" id="details">
+      <div class="details-layout">
+        <article class="details-card">
+          <span class="status available">متاح</span>
+          <h1 id="detailTitle">تفاصيل الفائض</h1>
+          <p id="detailMeta"></p>
+          <ul class="detail-list">
+            <li><span>عدد الحصص</span><strong id="detailServings"></strong></li>
+            <li><span>الحي</span><strong id="detailDistrict"></strong></li>
+            <li><span>موقع الاستلام</span><strong id="detailLocation"></strong></li>
+            <li><span>اسم المكان</span><strong id="detailPickupPlace"></strong></li>
+            <li><span>طريقة التوزيع</span><strong id="detailDeliveryMode"></strong></li>
+            <li><span>موقع التسليم</span><strong id="detailDeliveryLocation"></strong></li>
+            <li><span>اسم مكان التسليم</span><strong id="detailDeliveryPlace"></strong></li>
+            <li><span>وقت الاستلام</span><strong id="detailTime"></strong></li>
+            <li><span>الحالة</span><strong id="detailCondition"></strong></li>
+            <li><span>الفئة المستفيدة</span><strong id="detailBeneficiary"></strong></li>
+          </ul>
+          <p class="note" id="detailNotes"></p>
+          <p class="note" id="detailPickupInstructions"></p>
+          <button class="primary" id="requestButton">طلب الاستلام</button>
+        </article>
+        <aside class="side-card">
+          <h2>ملخص الاستلام</h2>
+          <ol>
+            <li>الاستلام من الموقع المحدد.</li>
+            <li>التنسيق يتم بعد تأكيد الطلب.</li>
+            <li>الأولوية للفوائض العاجلة.</li>
+          </ol>
+        </aside>
+      </div>
+    </section>
+
+    <section class="page" id="requests">
+      <div class="section-heading">
+        <p class="eyebrow">My Requests</p>
+        <h1>طلباتي</h1>
+      </div>
+      <div class="table-card">
+        <table>
+          <thead>
+            <tr>
+              <th>الفائض</th>
+              <th>الجهة</th>
+              <th>الحي</th>
+              <th>الفئة المستفيدة</th>
+              <th>طريقة التوزيع</th>
+              <th>الحالة</th>
+            </tr>
+          </thead>
+          <tbody id="requestsTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="page" id="volunteer">
+      <div class="section-heading">
+        <p class="eyebrow">Volunteer Dashboard</p>
+        <h1>لوحة المتطوعين</h1>
+      </div>
+      <div class="dashboard-grid">
+        <article class="metric-card">
+          <span>مهام مفتوحة</span>
+          <strong id="openTasks">0</strong>
+        </article>
+        <article class="metric-card">
+          <span>حصص تحتاج استلام</span>
+          <strong id="totalServings">0</strong>
+        </article>
+        <article class="metric-card">
+          <span>طلبات قيد التنفيذ</span>
+          <strong id="activeRequests">0</strong>
+        </article>
+      </div>
+      <div class="volunteer-cards" id="volunteerCards"></div>
+      <div class="timeline" id="volunteerTimeline"></div>
+    </section>
+
+    <section class="page" id="impact">
+      <div class="section-heading">
+        <p class="eyebrow">Impact</p>
+        <h1>الأثر والإحصائيات</h1>
+      </div>
+      <div class="impact-grid">
+        <article>
+          <strong id="savedMeals">0</strong>
+          <span>وجبة تم إنقاذها</span>
+        </article>
+        <article>
+          <strong id="providersCount">0</strong>
+          <span>جهة مشاركة</span>
+        </article>
+        <article>
+          <strong id="districtsCount">0</strong>
+          <span>أحياء مغطاة</span>
+        </article>
+      </div>
+      <div class="chart-card">
+        <h2>توزيع الفوائض حسب النوع</h2>
+        <div class="live-chart" id="impactChart" aria-label="رسم بياني تفاعلي لتوزيع الفوائض"></div>
+      </div>
+      <div class="analysis-grid" id="impactAnalysis"></div>
+      <div class="chart-card">
+        <h2>تفاصيل البيانات المخزنة</h2>
+        <div class="data-table" id="impactDataTable"></div>
+      </div>
+    </section>
+
+    <section class="page" id="support">
+      <div class="section-heading">
+        <p class="eyebrow">Support</p>
+        <h1>الدعم</h1>
+        <p>للتواصل مع فريق نِعمة بخصوص الاستلام أو التوزيع.</p>
+      </div>
+
+      <div class="support-grid">
+        <article class="support-card">
+          <div class="support-title-row">
+            <span class="drawer-icon"><img src="assets/support.svg" alt="" /></span>
+            <div>
+              <h3>تواصل معنا</h3>
+              <p>اختر الطريقة المناسبة للتواصل مع فريق نِعمة.</p>
+            </div>
+          </div>
+
+          <div class="support-contact-grid">
+            <a class="contact-link" id="supportEmailLink" href="mailto:atheer@gmail.com">
+              <span>البريد الإلكتروني</span>
+              <strong>atheer@gmail.com</strong>
+            </a>
+            <a class="contact-link" id="supportPhoneLink" href="tel:+966595928310">
+              <span>رقم التواصل</span>
+              <strong>+966595928310</strong>
+            </a>
+            <div class="contact-link contact-hours">
+              <span>أوقات الخدمة</span>
+              <strong dir="ltr">8:00 AM - 9:00 PM</strong>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="page" id="settings">
+      <div class="section-heading">
+        <p class="eyebrow">Settings</p>
+        <h1>الإعدادات</h1>
+      </div>
+      <div class="settings-grid">
+        <article class="settings-card">
+          <div>
+            <h2>المظهر</h2>
+            <p>اختر بين الوضع الداكن والوضع الفاتح.</p>
+          </div>
+          <label class="theme-switch" aria-label="تبديل الوضع">
+            <input type="checkbox" class="theme-switch__checkbox" id="themeToggle" checked />
+            <div class="theme-switch__container">
+              <div class="theme-switch__clouds"></div>
+              <div class="theme-switch__stars-container">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 55" fill="none">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M135.831 3.00688C135.055 3.85027 134.111 4.29946 133 4.35447C134.111 4.40947 135.055 4.85867 135.831 5.71123C136.607 6.55462 136.996 7.56303 136.996 8.72727C136.996 7.56303 137.385 6.55462 138.161 5.71123C138.937 4.85867 139.881 4.40947 141 4.35447C139.881 4.29946 138.937 3.85027 138.161 3.00688C137.385 2.15432 136.996 1.14591 136.996 0C136.996 1.14591 136.607 2.15432 135.831 3.00688Z" fill="currentColor"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M31.8313 23.0069C31.0553 23.8503 30.111 24.2995 29 24.3545C30.111 24.4095 31.0553 24.8587 31.8313 25.7112C32.6074 26.5546 32.9956 27.563 32.9956 28.7273C32.9956 27.563 33.3838 26.5546 34.1598 25.7112C34.9359 24.8587 35.8802 24.4095 37 24.3545C35.8802 24.2995 34.9359 23.8503 34.1598 23.0069C33.3838 22.1543 32.9956 21.1459 32.9956 20C32.9956 21.1459 32.6074 22.1543 31.8313 23.0069Z" fill="currentColor"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M96.8313 38.0069C96.0553 38.8503 95.111 39.2995 94 39.3545C95.111 39.4095 96.0553 39.8587 96.8313 40.7112C97.6074 41.5546 97.9956 42.563 97.9956 43.7273C97.9956 42.563 98.3838 41.5546 99.1598 40.7112C99.9359 39.8587 100.88 39.4095 102 39.3545C100.88 39.2995 99.9359 38.8503 99.1598 38.0069C98.3838 37.1543 97.9956 36.1459 97.9956 35C97.9956 36.1459 97.6074 37.1543 96.8313 38.0069Z" fill="currentColor"/>
+                  <circle cx="11" cy="10" r="2" fill="currentColor"/><circle cx="65" cy="8" r="2" fill="currentColor"/><circle cx="120" cy="25" r="2" fill="currentColor"/><circle cx="44" cy="45" r="2" fill="currentColor"/>
+                </svg>
+              </div>
+              <div class="theme-switch__circle-container">
+                <div class="theme-switch__sun-moon-container">
+                  <div class="theme-switch__moon">
+                    <div class="theme-switch__spot"></div>
+                    <div class="theme-switch__spot"></div>
+                    <div class="theme-switch__spot"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </label>
+        </article>
+        <article class="settings-card">
+          <h2>الحساب</h2>
+          <p id="accountText">لم يتم تسجيل الدخول بعد.</p>
+          <button class="secondary account-button" id="logoutButton" type="button">تسجيل الخروج</button>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
