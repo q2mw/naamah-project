@@ -2893,3 +2893,17 @@ body:has(#requests.active) {
   background-repeat: no-repeat !important;
   background-size: cover !important;
 }
+/* Fix short pages background cutting */
+.page.active {
+  min-height: calc(100vh - 90px);
+}
+
+#settings,
+#support,
+#requests {
+  min-height: calc(100vh - 90px);
+  background: transparent !important;
+}
+.page-content {
+  min-height: calc(100vh - 90px);
+}
